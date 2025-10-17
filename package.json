@@ -12,7 +12,6 @@
     "prebuild": "node -e \"console.log('Astro version:', require('astro/package.json').version)\""
   },
   "dependencies": {
-    "astro": "latest",
-    "@astrojs/mdx": "latest"
+    "astro": "latest"
   }
 }

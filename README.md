@@ -14,6 +14,7 @@ Features:
 - ✅ Sitemap support
 - ✅ RSS Feed support
 - ✅ Markdown & MDX support
+- 
 
 <!-- dash-content-end -->
 

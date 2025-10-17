@@ -8,8 +8,8 @@
   "build": "astro build",
   "preview": "astro preview"
 },
-  "dependencies": {
-    "@astrojs/rss": "^4.0.0"
-    "astro": "latest"
-  }
+"dependencies": {
+  "astro": "latest",
+  "@astrojs/rss": "^4.0.0"
+}
 }

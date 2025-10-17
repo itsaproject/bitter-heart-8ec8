@@ -10,6 +10,6 @@
 },
 "dependencies": {
   "astro": "latest",
-  "@astrojs/rss": "^4.0.0"
+  "@astrojs/rss": "3.0.3"
 }
 }

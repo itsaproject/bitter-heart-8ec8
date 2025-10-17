@@ -1,0 +1,47 @@
+---
+import { wpGraphQL } from '@/lib/wp';
+import { PAGES_LIST, PAGE_BY_URI } from '@/lib/queries';
+
+export async function getStaticPaths() {
+  // Pull a generous number; bump if you have lots of pages
+  const { pages } = await wpGraphQL<{ pages: { nodes: { uri: string }[] } }>({
+    query: PAGES_LIST,
+    variables: { first: 200 }
+  });
+
+  // Convert WPGraphQL URIs like "/about/" → ["about"]
+  // Skip the homepage ("/") because the starter already has src/pages/index.astro
+  const paths = pages.nodes
+    .map((p) => p.uri)
+    .filter((uri) => uri !== '/' && uri !== '' )
+    .map((uri) => {
+      const segs = uri.replace(/^\/|\/$/g, '').split('/').filter(Boolean);
+      return { params: { page: segs } };
+    });
+
+  return paths;
+}
+
+const segs = Astro.params.page;
+const uri = Array.isArray(segs) ? `/${segs.join('/')}/` : '/';
+
+const { nodeByUri } = await wpGraphQL<{ nodeByUri: any }>({
+  query: PAGE_BY_URI,
+  variables: { uri }
+});
+
+const page = nodeByUri;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>{page?.title ?? 'Page'}</title>
+  </head>
+  <body>
+    <main style="max-width: 72ch; margin: 3rem auto; padding: 0 1rem;">
+      <h1>{page?.title}</h1>
+      <div set:html={page?.content} />
+    </main>
+  </body>
+</html>

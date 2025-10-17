@@ -13,5 +13,8 @@
   },
   "dependencies": {
     "astro": "latest"
+  "@astrojs/mdx": "latest"
+}
+
   }
 }

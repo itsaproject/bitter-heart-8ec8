@@ -33,6 +33,7 @@
     "dev": "astro dev",
     "preview": "astro build && wrangler dev",
     "types": "wrangler types"
+    "prebuild": "node -e \"console.log('Astro version:', require('astro/package.json').version)\""
   },
   "type": "module"
 }

@@ -2,15 +2,12 @@
   "name": "bitter-heart-8ec8",
   "version": "1.0.0",
   "type": "module",
-  "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro",
-    "deploy": "astro build && wrangler deploy",
-    "prebuild": "node -e \"console.log('Astro version:', require('astro/package.json').version)\""
-  },
+"scripts": {
+  "dev": "astro dev",
+  "start": "astro dev",
+  "build": "astro build",
+  "preview": "astro preview"
+},
   "dependencies": {
     "astro": "latest"
   }

@@ -1,0 +1,30 @@
+---
+import { wpGraphQL } from '@/lib/wp';
+
+const { pages } = await wpGraphQL<{ pages: { nodes: { uri: string, title: string }[] } }>({
+  query: `
+    query PagesList($first:Int!) {
+      pages(first:$first, where:{orderby:{field:MENU_ORDER,order:ASC}}) {
+        nodes { uri title }
+      }
+    }
+  `,
+  variables: { first: 200 }
+});
+const list = pages.nodes;
+---
+
+<html lang="en">
+  <body style="max-width: 72ch; margin: 3rem auto; padding: 0 1rem; font: 16px/1.5 system-ui, sans-serif;">
+    <h1>WP Pages visible to Astro</h1>
+    <p>Total: {list.length}</p>
+    <ul>
+      {list.map(p => (
+        <li>
+          <code>{p.uri}</code> — <a href={p.uri}>{p.title}</a>
+        </li>
+      ))}
+    </ul>
+    <p>Note: URIs are from WordPress; links assume this site handles those paths via <code>[...page].astro</code>.</p>
+  </body>
+</html>

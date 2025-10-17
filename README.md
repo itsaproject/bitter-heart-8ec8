@@ -4,6 +4,8 @@
 
 <!-- dash-content-start -->
 
+
+
 Create a blog with Astro and deploy it on Cloudflare Workers as a [static website](https://developers.cloudflare.com/workers/static-assets/).
 
 Features:
